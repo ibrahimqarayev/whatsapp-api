@@ -5,6 +5,7 @@ import az.whatsapp.model.User;
 import az.whatsapp.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -22,6 +23,10 @@ public class UserService {
             return opt.get();
         }
         throw new UserException("User not found");
+    }
+
+    List<User> findAll() {
+        return userRepository.findAll();
     }
 
 
