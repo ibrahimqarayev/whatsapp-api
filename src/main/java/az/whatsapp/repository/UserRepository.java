@@ -1,6 +1,7 @@
 package az.whatsapp.repository;
 
-import org.apache.catalina.User;
+
+import az.whatsapp.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Integer> {
