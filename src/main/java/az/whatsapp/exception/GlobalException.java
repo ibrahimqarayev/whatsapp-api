@@ -17,7 +17,14 @@ public class GlobalException {
         return new ResponseEntity<ErrorDetail>(errorDetail, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(UserException.class)
+    @ExceptionHandler(MessageException.class)
+    public ResponseEntity<ErrorDetail> messageExceptionHandler(MessageException ex, WebRequest req) {
+        ErrorDetail errorDetail = new ErrorDetail(ex.getMessage(), req.getDescription(false), LocalDateTime.now());
+        return new ResponseEntity<ErrorDetail>(errorDetail, HttpStatus.BAD_REQUEST);
+    }
+
+
+    @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorDetail> otherException(Exception ex, WebRequest req) {
         ErrorDetail errorDetail = new ErrorDetail(ex.getMessage(), req.getDescription(false), LocalDateTime.now());
         return new ResponseEntity<ErrorDetail>(errorDetail, HttpStatus.BAD_REQUEST);
