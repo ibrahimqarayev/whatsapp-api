@@ -1,17 +1,18 @@
 package az.whatsapp.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.Objects;
 
 @Entity
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(name = "full_name")
     private String fullName;
     private String email;
+    @Column(name = "profile_picture")
     private String profilePicture;
     private String password;
 
@@ -64,5 +65,23 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(id, user.id)
+                && Objects.equals(fullName, user.fullName)
+                && Objects.equals(email, user.email)
+                && Objects.equals(profilePicture, user.profilePicture)
+                && Objects.equals(password, user.password);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, fullName, email, profilePicture, password);
     }
 }
