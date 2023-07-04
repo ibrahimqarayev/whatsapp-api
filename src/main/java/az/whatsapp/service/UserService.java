@@ -22,7 +22,7 @@ public class UserService {
         this.tokenProvider = tokenProvider;
     }
 
-    public User findById(Integer id) {
+    public User findUserById(Integer id) {
         Optional<User> opt = userRepository.findById(id);
         if (opt.isPresent()) {
             return opt.get();
